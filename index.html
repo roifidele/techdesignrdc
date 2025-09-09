@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechDesign RDC - Conception, Modélisation et Prototypage</title>
+    <link rel="icon" href="01tech.jpg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#14283E',
+                        secondary: '#EAEFF7',
+                        accent: '#FF6B35',
+                        lightblue: '#4ECDC4',
+                        yellow: '#FFE66D'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                        'bounce-slow': 'bounce 2s infinite'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(100px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-pattern {
+            background-color: #14283E;
+            background-image: radial-gradient(#4ECDC4 0.5px, transparent 0.5px), radial-gradient(#4ECDC4 0.5px, #14283E 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .floating-whatsapp {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-secondary">
+    <!-- Navigation -->
+    <nav class="bg-primary text-white py-4 px-6 fixed w-full z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-xl font-bold flex items-center">
+                        <img src="01tech.jpg" alt="Logo TechDesign" class="w-8 h-8 mr-2">
+                        TechDesign RDC
+                    </a>
+            
+            <!-- Mobile menu button -->
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Desktop menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#accueil" class="hover:text-accent transition">Accueil</a>
+                <a href="#services" class="hover:text-accent transition">Services</a>
+                <a href="#apropos" class="hover:text-accent transition">À propos</a>
+                <a href="#contact" class="hover:text-accent transition">Contact</a>
+                <a href="indexbl.html" class="hover:text-accent transition">BureauLink</a>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-primary px-4 pb-4">
+            <a href="#accueil" class="block py-2 hover:text-accent transition">Accueil</a>
+            <a href="#services" class="block py-2 hover:text-accent transition">Services</a>
+            <a href="#apropos" class="block py-2 hover:text-accent transition">À propos</a>
+            <a href="#contact" class="block py-2 hover:text-accent transition">Contact</a>
+            <a href="indexbl.html" class="block py-2 hover:text-accent transition">BureauLink</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero-pattern text-white pt-24 pb-16 md:pt-32 md:pb-24 px-6">
+        <div class="container mx-auto max-w-4xl text-center animate-on-scroll">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 animate-on-scroll">Vos idées prennent forme</h1>
+            <p class="text-xl md:text-2xl mb-8 animate-on-scroll">De l'étude à la réalisation, nous transformons vos concepts en projets concrets</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4 animate-on-scroll">
+                <a href="https://wa.me/243983168328?text=Bonjour%20TechDesign%20RDC%2C%20j'ai%20besoin%20de%20vous%20pour%20un%20projet" 
+   target="_blank" class="bg-accent hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-full transition transform hover:-translate-y-1">
+                    Nous contacter
+                </a>
+                <a href="#services" class="bg-white hover:bg-gray-100 text-primary font-bold py-3 px-8 rounded-full transition transform hover:-translate-y-1">
+                    Nos services
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 px-6 bg-white">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-4 animate-on-scroll">Nos Services</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto animate-on-scroll">TechDesign RDC propose des services complets pour étudiants, artisans, entrepreneurs et particuliers</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-secondary rounded-xl p-6 shadow-md transition-all duration-300 animate-on-scroll">
+                    <div class="text-4xl text-accent mb-4">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Plans 2D et modélisation 3D</h3>
+                    <p class="text-gray-600">Conception précise de plans 2D et modélisation 3D détaillée pour vos projets académiques et professionnels.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-secondary rounded-xl p-6 shadow-md transition-all duration-300 animate-on-scroll">
+                    <div class="text-4xl text-accent mb-4">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Prototypes et maquettes</h3>
+                    <p class="text-gray-600">Réalisation de prototypes physiques et maquettes pour visualisation et tests de vos concepts.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-secondary rounded-xl p-6 shadow-md transition-all duration-300 animate-on-scroll">
+                    <div class="text-4xl text-accent mb-4">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Assistance technique</h3>
+                    <p class="text-gray-600">Optimisation et assistance technique pour la fabrication ou la construction de vos projets.</p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-secondary rounded-xl p-6 shadow-md transition-all duration-300 animate-on-scroll">
+                    <div class="text-4xl text-accent mb-4">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Génie industriel</h3>
+                    <p class="text-gray-600">Solutions complètes en génie industriel pour optimiser vos processus de production.</p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-secondary rounded-xl p-6 shadow-md transition-all duration-300 animate-on-scroll">
+                    <div class="text-4xl text-accent mb-4">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Mécanique</h3>
+                    <p class="text-gray-600">Conception et modélisation mécanique pour tous types de projets et applications.</p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-secondary rounded-xl p-6 shadow-md transition-all duration-300 animate-on-scroll">
+                    <div class="text-4xl text-accent mb-4">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary mb-2">Architecture</h3>
+                    <p class="text-gray-600">Services de conception architecturale pour particuliers et professionnels.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="apropos" class="py-16 px-6 bg-primary text-white">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2 animate-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Notre Mission</h2>
+                    <p class="text-lg mb-4">TechDesign RDC est une entreprise spécialisée dans la conception, la modélisation et le prototypage, basée en République démocratique du Congo.</p>
+                    <p class="text-lg mb-4">Notre mission est de rendre la conception accessible et professionnelle, en permettant à nos clients de transformer leurs idées en projets concrets, fonctionnels et impressionnants.</p>
+                    <p class="text-lg">Nous combinons expertise technique et créativité pour offrir des solutions sur mesure adaptées à vos besoins spécifiques.</p>
+                </div>
+                <div class="w-full md:w-1/2 animate-on-scroll">
+                    <div class="bg-accent rounded-xl p-6 shadow-lg">
+                        <h3 class="text-2xl font-bold mb-4">Pourquoi nous choisir?</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <span class="bg-white text-accent rounded-full p-2 mr-3"><i class="fas fa-check"></i></span>
+                                <span>Expertise technique de haut niveau</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-white text-accent rounded-full p-2 mr-3"><i class="fas fa-check"></i></span>
+                                <span>Matériel et logiciels professionnels</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-white text-accent rounded-full p-2 mr-3"><i class="fas fa-check"></i></span>
+                                <span>Approche personnalisée pour chaque projet</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-white text-accent rounded-full p-2 mr-3"><i class="fas fa-check"></i></span>
+                                <span>Respect des délais et du budget</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-white text-accent rounded-full p-2 mr-3"><i class="fas fa-check"></i></span>
+                                <span>Support continu après livraison</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 px-6 bg-secondary">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-12 animate-on-scroll">Ils nous ont fait confiance</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white rounded-xl p-6 shadow-md animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="text-3xl text-accent mr-4">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Étudiants</h4>
+                            <div class="text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"TechDesign RDC m'a aidé à réaliser la maquette de mon projet de fin d'études. Le résultat était parfait et j'ai obtenu une excellente note."</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white rounded-xl p-6 shadow-md animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="text-3xl text-accent mr-4">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Entrepreneurs</h4>
+                            <div class="text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Le prototypage rapide de notre produit a été crucial pour notre levée de fonds. Professionnalisme et qualité au rendez-vous."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white rounded-xl p-6 shadow-md animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="text-3xl text-accent mr-4">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Artisans</h4>
+                            <div class="text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Les plans 2D précis m'ont permis de gagner un temps considérable dans la réalisation de mes projets artisanaux. Je recommande vivement!"</p>
+                </div>
+                
+                <!-- Testimonial 4 -->
+                <div class="bg-white rounded-xl p-6 shadow-md animate-on-scroll">
+                    <div class="flex items-center mb-4">
+                        <div class="text-3xl text-accent mr-4">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Particuliers</h4>
+                            <div class="text-yellow-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"La modélisation 3D de notre future maison nous a permis de visualiser le résultat final et d'apporter des modifications avant le début des travaux."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 px-6 bg-white">
+        <div class="container mx-auto max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-4 animate-on-scroll">Contactez-nous</h2>
+            <p class="text-center text-gray-600 mb-12 animate-on-scroll">Discutons de votre projet et voyons comment nous pouvons vous aider</p>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="w-full md:w-1/2 animate-on-scroll">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">Nom complet</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Adresse email</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent"></textarea>
+                        </div>
+                        <button type="submit" class="bg-accent hover:bg-opacity-90 text-white font-bold py-3 px-8 rounded-full transition w-full">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="w-full md:w-1/2 animate-on-scroll">
+                    <div class="bg-secondary rounded-xl p-6 h-full">
+                        <h3 class="text-2xl font-bold text-primary mb-6">Coordonnées</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="text-accent text-xl mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Adresse</h4>
+                     <p class="text-gray-600">République Démocratique du Congo</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-accent text-xl mr-4">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Téléphone</h4>
+                                    <p class="text-gray-600">+243 893 168 328</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-accent text-xl mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Email</h4>
+                                    <p class="text-gray-600">contact@techdesignrdc.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-accent text-xl mr-4">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Horaires</h4>
+                                    <p class="text-gray-600">Lun - Ven: 8h - 18h</p>
+                                    <p class="text-gray-600">Sam: 9h - 13h</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold text-primary mb-4">Suivez-nous</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-primary text-white p-3 rounded-full hover:bg-opacity-90 transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-primary text-white p-3 rounded-full hover:bg-opacity-90 transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-primary text-white p-3 rounded-full hover:bg-opacity-90 transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-primary text-white p-3 rounded-full hover:bg-opacity-90 transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12 px-6">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-xl font-bold flex items-center">
+                        <img src="01tech.jpg" alt="Logo TechDesign" class="w-8 h-8 mr-2">
+                        TechDesign RDC
+                    </a>
+                    <p class="mt-2 text-secondary">Vos idées prennent forme, de l'étude à la réalisation</p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#accueil" class="hover:text-accent transition">Accueil</a>
+                    <a href="#services" class="hover:text-accent transition">Services</a>
+                    <a href="#apropos" class="hover:text-accent transition">À propos</a>
+                    <a href="#contact" class="hover:text-accent transition">Contact</a>
+                    <a href="indexbl.html" class="hover:text-accent transition">BureauLink</a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-secondary">
+                <p>&copy; 2025 TechDesign RDC. Tous droits réservés.</p>
+                
+                <p class="text-center text-sm">Fait avec du ❤️ par <a href="https://roifidele.com" target="_blank" class="text-purple-600 hover:underline">roifidele.com</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/243983168328?text=Bonjour%20TechDesign%20RDC%2C%20j'ai%20besoin%20de%20vous%20pour%20un%20projet" 
+   target="_blank" 
+   class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg floating-whatsapp z-50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+        
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
